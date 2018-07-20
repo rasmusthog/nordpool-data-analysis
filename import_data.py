@@ -23,10 +23,13 @@ for filename in filenames:
     column_names = elspot_df.columns.values
     column_names[0] = "Date_temp" # will remove this after merging the columns
     column_names[1] = "Hours_temp" # will remove this after the columns
-    column_names[11] = "Kristiansand"
-    column_names[14] = "Trondheim"
-    column_names[15] = "Tromso"
+    column_names[10] = "NO1" # From Oslo
+    column_names[11] = "NO2" # From Kr.sand
+    column_names[12] = "NO5" # From Bergen
+    column_names[14] = "NO3" # From Trondheim - same as Molde.
+    column_names[15] = "NO4" # From Tromsø
     elspot_df.columns = column_names
+    print(elspot_df.columns.values)
 
 
     ## Merge date and hours
@@ -38,7 +41,7 @@ for filename in filenames:
 
     elspot_df["Date"] = pd.to_datetime(elspot_df["Date"], format="%d-%m-%Y %H")
     elspot_df = elspot_df.set_index(["Date"])
-    elspot_df = elspot_df.drop(["Date_temp", "Hours_temp"], axis=1)
+    elspot_df = elspot_df.drop(["Date_temp", "Hours_temp", "Molde"], axis=1) # Molde is equal to Trondheim = NO3
     column_names = elspot_df.columns.values
 
 
