@@ -1,4 +1,4 @@
-# This module will import hourly elspot price data for 2014-2018 in EUR from
+# This module will import hourly elspot price data for 2013-2018 in EUR from
 # https://www.nordpoolgroup.com/historical-market-data/ and clean the data for
 # data anlaysis.
 
@@ -67,6 +67,11 @@ for df in df_list:
 # Dropping FRE column that only shows with values for certain years.
 elspot_df_total = elspot_df_total.drop("FRE", axis=1)
 
+# Adding data from the old bidding area ELE to the bidding area LV from 01-01-2013 to 02-06-2013,
+# and dropping the ELE-column.
+
+elspot_df_total["LV"].loc["2013-01-01":"2013-06-02"] = elspot_df_total["ELE"].loc["2013-01-01":"2013-06-02"]
+elspot_df_total = elspot_df_total.drop("ELE", axis=1)
 print(elspot_df_total.info())
 
-elspot_df_total.to_csv("datasets/total-elspot-prices_2014-2018.csv")
+elspot_df_total.to_csv("datasets/total-elspot-prices_2013-2018.csv")
