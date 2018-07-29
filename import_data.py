@@ -8,7 +8,7 @@ import pandas as pd
 import glob
 
 df_list = []
-filenames = glob.glob("datasets/elspot*.csv")
+filenames = glob.glob("datasets/elspot-prices/elspot*.csv")
 
 print(filenames)
 
@@ -74,4 +74,4 @@ elspot_df_total["LV"].loc["2013-01-01":"2013-06-02"] = elspot_df_total["ELE"].lo
 elspot_df_total = elspot_df_total.drop("ELE", axis=1)
 print(elspot_df_total.info())
 
-elspot_df_total.to_csv("datasets/total-elspot-prices_2013-2018.csv")
+elspot_df_total.to_csv("datasets/elspot-prices/total-elspot-prices_2013-2018.csv")
